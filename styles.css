@@ -1,0 +1,79 @@
+
+html {font-family: monospace}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+button {
+  display: block;
+  margin: 1rem auto;
+}
+
+header {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+#banner {
+  width: 38rem;
+}
+
+#helpBtn {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: 'Courier New', 'Courier', monospace;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: white;
+  border: black solid .2rem;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 0 0.5em lightgray;
+}
+
+
+
+
+#helpBtn:focus {
+  outline: white 0 solid;
+}
+
+
+
+
+#total {
+  text-align: center;
+  overflow: hidden;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+
+#help {
+  font-size: 1rem;
+  height: auto;
+  margin: 0;
+  width: 27rem;
+}
+
+#help-wrapper {
+  height: 0;
+  overflow: hidden;
+  margin: 0 2rem 2rem 2rem;
+}
+
+h2 {font-size: 1.2rem}
+
+
+textarea {overflow: auto}
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>time calculator</title>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+
+    
+    <header aria-label="time calculator header">
+      <img id="banner" src="banner.png" alt="">
+    </header>
+    <textarea cols="30" rows="5" spellcheck="false" autofocus></textarea>
+
+    <div>
+      <button type="button" id="calc">calculate</button>
+      <p id="total" aria-atomic="true" style="height: 0rem; margin: 0rem"></p>
+    
+    <button type="button" id="helpBtn">?</button>
+    </div>
+    
+    <div id="help-wrapper">
+
+      <section id="help">
+        <h2>Formatting</h2>
+        <p>
+          Each term must be either a &lt;datetime&gt;, &lt;number&gt;, or &lt;duration&gt;. The output is also always one of these. The format of each of these largely follows ISO-8601: 
+        </p>
+          <dl>
+            <dt>&lt;datetime&gt;</dt>
+            <dd>[±YY]YYYY-MM[-DD[Thh[:mm[:ss[.sss]]]]]</dd>
+            <dd>or --MM[-DD[Thh[:mm[:ss[.sss]]]]]</dd>
+            <dd>or the string "now" which corresponds to the current datetime</dd>
+            <dd>Anything omitted after the "T" is taken to be zero.</dd>
+            <dd>Anything omitted before it is taken to be that of the current date.</dd>
+            <dd>Years between 0 and 99 are converted to a year in the 20th century. e.g. 0095 becomes 1995.</dd>
+            <dt>&lt;number&gt;</dt>
+            <dd>[-]n[.n] where n is any positive integer</dd>
+
+            <dt>&lt;duration&gt;</dt>
+            <dd>[-]nYnMnDTnHnMnS where n is any &lt;number&gt; and every component (nY, nM, nD, nH, nM, and nS) is optional</dd>
+          </dl>
+
+        <p>Each term and each operator must be separated by at least one whitespace character (space, tab, line feed). The same isn't true for parentheses. Input is case-insensitive. Commas are ignored.</p>
+
+        <h2>Valid operations</h2>
+          <ul>
+            <li>&lt;number&gt; * / + - &lt;number&gt;</li>
+            <li>&lt;duration&gt; / + - &lt;duration&gt;</li>
+            <li>&lt;datetime&gt; =&gt; &lt;datetime&gt; (finds the &lt;duration&gt; between the two &lt;datetime&gt;s)</li>
+            <li>&lt;duration&gt; * / &lt;number&gt;</li>
+            <li>&lt;datetime&gt; + - &lt;duration&gt;</li>
+          </ul>
+
+        <h2>Order of operations</h2>
+          <ol>
+            <li>parentheses</li>
+            <li>=&gt;</li>
+            <li>* and /</li>
+            <li>+ and -</li>
+          </ol>
+
+        <h2>Errors</h2>
+          <dl>
+            <dt>"Please use infix notation."</dt>
+            <dd>Operators must be placed between terms e.g. 1 + 2, not + 1 2 (prefix) or 1 2 + (postfix).</dd>
+            <dt>"Invalid datetime"</dt>
+            <dd>A &lt;datetime&gt; is greater than +275760-09-13 or less than -271821-04-20</dd>
+            <dt>"Invalid operation: &hellip;"</dt>
+            <dd>An operation isn't one of the delineated above.</dd>
+            <dt>"Division by zero"</dt>
+            <dt>"Unmatched parentheses"</dt>
+            <dd>Unequal amount of left and right parentheses</dd>
+            <dt>"Unrecognized element: &hellip;"</dt>
+            <dd>An element isn't an operator (+, -, *, /, =>, or a parenthesis), &lt;datetime&gt;, &lt;number&gt;, or a &lt;duration&gt;.</dd>
+          </dl>
+
+      </section>
+      
+    </div>
+
+
+
+  </body>
+</html>
