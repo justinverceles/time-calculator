@@ -10,6 +10,9 @@ body {
   min-height: 100vh;
 }
 
+
+
+
 button {
   display: block;
   margin: 1rem auto;
@@ -74,6 +77,15 @@ header {
 h2 {font-size: 1.2rem}
 
 
+
 textarea {overflow: auto}
 
 
+@media screen and (max-width: 415px) {
+  header {
+    margin-top: 1rem;
+  }
+  #banner, #help {
+    width: 80vw;
+  }
+}
