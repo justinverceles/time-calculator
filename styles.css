@@ -1,5 +1,8 @@
 
-html {font-family: monospace}
+html {
+  font-size: 13px;
+  font-family: 'andale-mono', monospace;
+}
 
 body {
   margin: 0;
@@ -30,7 +33,7 @@ header {
 #helpBtn {
   appearance: none;
   -webkit-appearance: none;
-  font-family: 'Courier New', 'Courier', monospace;
+  font-family: 'andale-mono', monospace;
   font-weight: bold;
   font-size: 1rem;
   background-color: white;
@@ -55,24 +58,39 @@ header {
 
 #total {
   text-align: center;
-  overflow: hidden;
   margin: 0;
   font-size: 1.5rem;
+  height: auto;
+}
+
+#total-wrapper {
+  overflow: hidden;
+  transition: height 0.1s linear;
+  height: 0;
 }
 
 
 #help {
   font-size: 1rem;
-  height: auto;
   margin: 0;
   width: 27rem;
+  height: auto;
+}
+
+#help h2:first-child {
+  margin-top: 0;
 }
 
 #help-wrapper {
-  height: 0;
   overflow: hidden;
-  margin: 0 2rem 2rem 2rem;
+  transition: height 0.3s linear;
+  transition-delay: 0;
+  height: 0;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
+
+
 
 h2 {font-size: 1.2rem}
 
@@ -81,11 +99,19 @@ h2 {font-size: 1.2rem}
 textarea {overflow: auto}
 
 
-@media screen and (max-width: 415px) {
+@font-face {
+  font-family: 'andale-mono';
+  src: url('Andale Mono.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (max-width: 425px) {
   header {
     margin-top: 1rem;
   }
-  #banner, #help {
+  #banner, #help, #total {
     width: 80vw;
   }
 }
+

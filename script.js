@@ -506,55 +506,44 @@ function error (message) {
 
 
 let id;
+
 function animateTotal (input, color) {
-  let heightNum = Number(total.style.height.match(numRegex)[0]);
+
   let start;
-  let direction;
-  total.style.overflow = 'hidden';
-
   function rAF (timestamp) {
-
-    if (start === undefined) {
-      start = timestamp;
-    }
+    if (start === undefined) start = timestamp;
     const elapsed = timestamp - start;
-
-    if (elapsed === 0 && total.textContent !== '') heightNum = 1.5;
-    else if (elapsed === 0 && total.textContent === '') heightNum = 0;
-
-    if (input !== '' && heightNum === 0) direction = 'down';
-    else if (elapsed === 0 && heightNum === 1.5) direction = 'up';
-    
-    if (heightNum === 0) {
+      
+    if (elapsed === 0 && totalWrapper.offsetHeight === 0) {
       total.textContent = input;
       total.style.color = color;
+      totalWrapper.style.height = `${total.offsetHeight}px`;
+    } else if (elapsed === 0 && totalWrapper.offsetHeight !== 0) {
+      let start1;
+      id = requestAnimationFrame(function rAF1(timestamp1) {
+        if (start1 === undefined) start1 = timestamp1;
+        const elapsed1 = timestamp1 - start1;
+        if (elapsed1 === 0) {
+          totalWrapper.style.height = `0px`;
+        }
+        if (elapsed1 < 100) {
+          id = requestAnimationFrame(rAF1);
+        } else {
+          total.textContent = input;
+          total.style.color = color;
+          totalWrapper.style.height = `${total.offsetHeight}px`;
+        }
+      });
     }
-    
-    if (direction === 'down') {
-      heightNum = Number((heightNum + 0.3).toFixed(1));
-    } else if (direction === 'up') {
-      heightNum = Number((heightNum - 0.3).toFixed(1));
-    }
 
-    if (heightNum === 0) {
-        total.textContent = input;
-        total.style.color = color;
-    }
-
-    if (heightNum === 1.5 && elapsed !== 0) total.style.overflow = 'visible';
-
-    total.style.height = `${heightNum}rem`;
-    total.style.margin = `${heightNum}rem`;
-
-    if (input !== '' ? heightNum < 1.5 : heightNum > 0) {
+    if (elapsed < 100) {
       id = requestAnimationFrame(rAF);
     }
   }
 
   id = requestAnimationFrame(rAF);
+
 }
-
-
 
 
 const log = console.log;
@@ -564,7 +553,6 @@ const groupEnd = console.groupEnd;
 calcBtn.addEventListener('mousedown', () => {
 
   if (id) cancelAnimationFrame(id);
-
 
 
   let date = new Date();
@@ -598,49 +586,20 @@ calcBtn.addEventListener('mousedown', () => {
 
 });
 
-let helpId;
-function animateHelp (direction) {
-  
 
-  let heightNum;
-
-  if (direction === 'down') heightNum = 0;
-  else if (direction === 'up') heightNum = help.offsetHeight;
-  let start;
-  function rAF (timestamp) {
-    if (start === undefined) {
-      start = timestamp;
-    }
-
-    const elapsed = timestamp - start;
-    if (direction === 'down') {
-      heightNum += help.offsetHeight / 10;
-    } else if (direction === 'up') {
-      heightNum -= help.offsetHeight / 10;
-    }
-
-    helpWrapper.style.height = `${heightNum}px`;
-
-    if (heightNum < help.offsetHeight) {
-      helpId = requestAnimationFrame(rAF);
-    }
-  }
-
-  helpId = requestAnimationFrame(rAF);
-}
 
 let helpBool = false;
 helpBtn.addEventListener('mousedown', e => {
-  if (helpId) cancelAnimationFrame(helpId);
   helpBool = !helpBool;
 
+  // help.classList.toggle('collapsed');
   if (helpBool) {
     e.target.style.boxShadow = '0 0 0.5em lightgray inset';
 
-    animateHelp('down');
+    helpWrapper.style.height = `${help.offsetHeight}px`;
   } else {
     e.target.style.boxShadow = '0 0 0.5em lightgray';
-    animateHelp('up');
+    helpWrapper.style.height = '0px';
   }
 });
 

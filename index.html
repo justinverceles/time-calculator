@@ -18,14 +18,15 @@
 
     <div>
       <button type="button" id="calc">calculate</button>
-      <p id="total" aria-atomic="true" style="height: 0rem; margin: 0rem"></p>
+      <div id="total-wrapper">
+        <p id="total" aria-atomic="true"></p>
+      </div>
     
     <button type="button" id="helpBtn">?</button>
     </div>
     
     <div id="help-wrapper">
-
-      <section id="help">
+      <section id="help" class="collapsed">
         <h2>Formatting</h2>
         <p>
           Each term must be either a &lt;datetime&gt;, &lt;number&gt;, or &lt;duration&gt;. The output is also always one of these. The format of each of these largely follows ISO-8601: 
@@ -80,8 +81,7 @@
           </dl>
 
       </section>
-      
-    </div>
+    </div> 
 
 
   </body>
