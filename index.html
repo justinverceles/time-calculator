@@ -39,11 +39,13 @@
             <dd>Anything omitted after the "T" is taken to be zero.</dd>
             <dd>Anything omitted before it is taken to be that of the current date.</dd>
             <dd>Years between 0 and 99 are converted to a year in the 20th century. e.g. 0095 becomes 1995.</dd>
+
             <dt>&lt;number&gt;</dt>
             <dd>[-]n[.n] where n is any positive integer</dd>
 
             <dt>&lt;duration&gt;</dt>
             <dd>[-]nYnMnDTnHnMnS where n is any &lt;number&gt; and every component (nY, nM, nD, nH, nM, and nS) is optional</dd>
+            <dd> 1Y = 12M = 30DT10H * 12 = 365D</dd>
           </dl>
 
         <p>Each term and each operator must be separated by at least one whitespace character (space, tab, line feed). The same isn't true for parentheses. Input is case-insensitive. Commas are ignored.</p>
